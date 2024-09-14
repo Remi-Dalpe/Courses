@@ -1,0 +1,8 @@
+{
+  "singleQuote": true,
+  "arrowParens": "always",
+  "bracketSpacing": false,
+  "bracketSameLine": false,
+  "jsxBracketSameLine": false,
+  "semi": true
+}
