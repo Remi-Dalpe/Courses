@@ -225,6 +225,8 @@ const books = [
   },
 ];
 
+/*
+// Destructuring Arrays
 const [firstBook, secondBook] = books;
 const [, , thirdBook] = books;
 
@@ -236,3 +238,28 @@ const [[, rating], [, ratingsCount]] = ratings;
 
 const ratingStars = [63405, 1808];
 const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
+// Destructuring Objects
+const {title, author, ISBN} = books[0];
+const {keyword: tags} = books[0];
+const {language, programmingLanguage = 'unknown'} = books[6];
+
+let bookTitle = 'unknown';
+let bookAuthor = 'unknown';
+({title: bookTitle, author: bookAuthor} = books[0]);
+
+const {
+  thirdParty: {
+    goodreads: {rating: bookRating},
+  },
+} = books[0];
+
+function printBookInfo(title, author, year = 'year unknown') {
+  console.log(`${title} by ${author}, ${year}`);
+}
+*/
+// Spread Operator
+const bookAuthor = [...books[0].author, ...books[1].author];
+
+function spellWords(word) {
+  console.log(...word);
+}
