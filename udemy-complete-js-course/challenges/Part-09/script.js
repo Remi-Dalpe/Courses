@@ -256,10 +256,20 @@ const {
 function printBookInfo(title, author, year = 'year unknown') {
   console.log(`${title} by ${author}, ${year}`);
 }
-*/
 // Spread Operator
 const bookAuthor = [...books[0].author, ...books[1].author];
 
 function spellWords(word) {
   console.log(...word);
+}
+*/
+// Short-Circuiting (&& and ||)
+function hasExamplesInJava(book) {
+  return book.programmingLanguage === 'Java' || 'no data available';
+}
+hasExamplesInJava(books[0]);
+
+for (let i = 0; i < books.length; i++) {
+  (books[i].onlineContent && `"${books[i].title}" provides online content`) ??
+    `"${books[i].title}" provides no data about its online content`;
 }
