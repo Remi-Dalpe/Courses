@@ -106,7 +106,7 @@ const scorers = {
 // Get the team names directly from the game object, don't hardcode them
 // (except for "draw"). Hint: Note how the odds and the game objects have the
 // same property names 😉
-// 4. Bonus: Create an object called 'scorers' which contains the names of the TODODONE
+// 4. Bonus: Create an object called 'scorers' which contains the names of the TODO
 // players who scored as properties, and the number of goals as the value. In this
 // game, it will look like this:
 // {
