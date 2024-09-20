@@ -273,7 +273,7 @@ for (let i = 0; i < books.length; i++) {
   (books[i].onlineContent && `"${books[i].title}" provides online content`) ??
     `"${books[i].title}" provides no data about its online content`;
 }
-*/
+
 // Logical Assignments Operators
 const LAO = function (books) {
   for (let i = 0; i < books.length; i++) {
@@ -283,3 +283,69 @@ const LAO = function (books) {
   }
 };
 LAO(books);
+
+// Looping arrays: for-of loop
+let pageSum = 0;
+for (let book of books) pageSum += book.pages;
+console.log(pageSum);
+
+const allAuthors = [];
+for (let book of books) {
+  if (typeof book.author === 'string') {
+    allAuthors.push(book.author);
+  } else for (const author of book.author) allAuthors.push(author);
+}
+
+for (const [i, el] of allAuthors.entries()) console.log(`${i + 1}: ${el}`);
+
+console.log('---- My Solution ----');
+console.log('- Names indented to correct book when multiple authors -');
+
+const myAllAuthors = [];
+for (let book of books) {
+  const author =
+    typeof book.author !== 'string'
+      ? book.author.join(', ').toString()
+      : book.author;
+  myAllAuthors.push(author);
+}
+
+for (const [i, auth] of myAllAuthors.entries())
+  console.log(`${i + 1}: ${auth}`);
+
+// Enhanced Object Literals
+const bookData = [
+  ['title', 'Computer Networking: A Top-Down Approach'],
+  ['author', ['James F. Kurose', 'Keith W. Ross']],
+  ['publisher', 'Addison Wesley'],
+];
+const newBook = {
+  [bookData[0][0]]: bookData[0][1],
+  [bookData[1][0]]: bookData[1][1],
+  [bookData[2][0]]: bookData[2][1],
+};
+
+const pages = 880;
+const newBook2 = {
+  title: 'The C Programming Language',
+  author: ['Brian W. Kernighan', 'Dennis M. Ritchie'],
+  pages,
+};
+
+// Optional Chaining (?.)
+function getFirstKeyword(book) {
+  return console.log(book.keywords?.[0]);
+}
+getFirstKeyword(books[0]);
+*/
+// Looping Objects: Object Keys, Values and Entries
+const entries = [];
+for (const key of Object.keys(books[0].thirdParty.goodreads))
+  entries.push([key]);
+
+for (const [i, value] of Object.values(books[0].thirdParty.goodreads).entries())
+  entries[i].push(value);
+
+const entries2 = Object.entries(books[0].thirdParty.goodreads);
+
+console.log(entries, entries2);
