@@ -41,34 +41,117 @@ const game = {
   },
 };
 
-const gameEvents = new Map([
-  [17, '⚽ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽ GOAL'],
-  [80, '⚽ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
 // 1)
-const events = [...new Set(gameEvents.values())];
-console.log(events);
+// console.log('==== test data (| to better notice spaces in the console) ====');
+// console.log(
+//   '|underscore_case',
+//   '| first_name',
+//   '|Some_Variable',
+//   '| calculate_AGE',
+//   '|delayed_departure'
+// );
+// console.log('==== toCamelCase test result ====');
+// console.log(
+//   toCamelCase('underscore_case'),
+//   toCamelCase(' first_name'),
+//   toCamelCase('Some_Variable'),
+//   toCamelCase(' calculate_AGE'),
+//   toCamelCase('delayed_departure')
+// );
+// console.log('==== final output test result ====');
+// const testData = [
+//   'underscore_case',
+//   ' first_name',
+//   'Some_Variable',
+//   ' calculate_AGE',
+//   'delayed_departure',
+// ];
+// for (const [i, data] of testData.entries()) {
+//   console.log(toCamelCase(data).padEnd(20), '✅'.repeat(i + 1));
+// }
 // 2)
-gameEvents.delete(64);
-// 3)
-const time = [...gameEvents.keys()].pop();
-console.log(
-  `An event happened, on average, every ${time / gameEvents.size} minutes`
-);
-//  4)
-for (const [time, event] of gameEvents) {
-  const half = time <= 45 ? 'FIRST' : 'SECOND';
-  console.log(`[${half} HALF] ${time}: ${event}`);
-}
+console.log('==== final result ====');
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+document.querySelector('button').textContent = 'Convert to CamelCase';
+
+document.querySelector(`button`).addEventListener('click', function () {
+  const text = document.querySelector(`textarea`).value;
+  const rows = text.split('\n');
+
+  for (const row of rows) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(output.padEnd(20, ' '));
+  }
+});
+
+// Coding Challenge #4
+
+// Write a program that receives a list of variable names written in underscore_case DONE
+// and convert them to camelCase.
+
+// The input will come from a textarea inserted into the DOM (see code below to TODO
+// insert the elements), and conversion will happen when the button is pressed.
+
+// Test data (pasted to textarea, including spaces):
+// underscore_case
+//  first_name
+// Some_Variable
+//   calculate_AGE
+// delayed_departure
+
+// Should produce this output (5 separate console.log outputs):
+// underscoreCase      ✅
+// firstName           ✅✅
+// someVariable        ✅✅✅
+// calculateAge        ✅✅✅✅
+// delayedDeparture    ✅✅✅✅✅
+
+// Hints:
+// § Remember which character defines a new line in the textarea 😉
+// § The solution only needs to work for a variable made out of 2 words, like a_b
+// § Start without worrying about the ✅. Tackle that only after you have the variable
+// name conversion working 😉
+// § This challenge is difficult on purpose, so start watching the solution in case
+// you're stuck. Then pause and continue!
+
+// Afterwards, test with your own test data!
+
+// GOOD LUCK 😀
+
+// const gameEvents = new Map([
+//   [17, '⚽ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽ GOAL'],
+//   [80, '⚽ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+// // 1)
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+// // 2)
+// gameEvents.delete(64);
+// // 3)
+// const time = [...gameEvents.keys()].pop();
+// console.log(
+//   `An event happened, on average, every ${time / gameEvents.size} minutes`
+// );
+// //  4)
+// for (const [time, event] of gameEvents) {
+//   const half = time <= 45 ? 'FIRST' : 'SECOND';
+//   console.log(`[${half} HALF] ${time}: ${event}`);
+// }
 
 // Let's continue with our football betting app! This time, we have a map called
 // 'gameEvents' (see below) with a log of the events that happened during the
