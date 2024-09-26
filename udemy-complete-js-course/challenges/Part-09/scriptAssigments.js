@@ -388,10 +388,108 @@ console.log(`${bookMap.get('title')} by ${bookMap.get('author')}`);
 console.log(bookMap.size);
 
 bookMap.has('author') && console.log('The author of the book is known');
-*/
+
 // Map: Iteration
 const firstBookMap = new Map(Object.entries(books[0]));
 console.log(firstBookMap);
 
 for (const [key, value] of firstBookMap)
   typeof value === 'number' && console.log(key);
+
+// Working with Strings - Part 1
+console.log(
+  books[0].ISBN['6'],
+  books[0].ISBN['4'],
+  books[0].ISBN['9'],
+  books[0].ISBN['8']
+);
+
+const quote =
+  'A computer once beat me at chess, but it was no match for me at kick boxing';
+console.log(quote.indexOf('chess'));
+console.log(quote.slice(quote.lastIndexOf(' ') + 1));
+
+function isContributor(author) {
+  return console.log(author.includes('Contributor'));
+}
+isContributor('Julie Sussman (Contributor)');
+
+// Working with Strings - Part 2
+function normalizeAuthorName(author) {
+  author = author.trim().toLowerCase();
+  const firstName =
+    author[0].toUpperCase() + author.slice(1, author.indexOf(' '));
+
+  let lastName = '';
+  if (author.indexOf(' ') === author.lastIndexOf(' ')) {
+    lastName = author.slice(author.indexOf(' ') + 1, author.length);
+  } else {
+    lastName = author.slice(author.indexOf(' ') + 1, author.lastIndexOf(' '));
+  }
+  lastName = lastName[0].toUpperCase() + lastName.slice(1);
+  console.log(firstName + ' ' + lastName);
+}
+normalizeAuthorName('  JuliE sussMan (Contributor)');
+
+const newBookTitle = books[1].title.replace('Programs', 'Software');
+console.log(newBookTitle);
+
+console.log('==== 16.3 ====');
+
+function logBookTheme(title) {
+  title = title.toLowerCase();
+  if (title.startsWith('computer')) {
+    console.log('This book is about computers');
+  } else if (title.includes('algorithms' && 'structures')) {
+    console.log('This book is about algorithms and data structures');
+  } else if {
+    title.endsWith('system') ||
+    (title.endsWith('systems') && !title.includes('operating'))
+  } else {
+    console.log(
+      'This book is about some systems, but definitely not about operating systems'
+    );
+  }
+}
+for (let i = 0; i < books.length; i++) logBookTheme(books[i].title);
+*/
+// Working with Strings - Part 3
+const bookCategories =
+  'science;computing;computer science;algorithms;business;operating systems;networking;electronics';
+function logBookCategories(str) {
+  const categories = str.split(';');
+
+  for (const each of categories) console.log(each);
+}
+logBookCategories(bookCategories);
+console.log('======================');
+
+// Write a function called getKeywordsAsString that takes the books array as an argument, DONE
+// collects keywords from each book, DONE
+// removes duplicates, DONE
+// and then joins them to create a single string where keywords are separated by a semicolon. DONE
+
+function getKeywordsAsString(b) {
+  const keywords = [];
+  for (const book of b) keywords.push(...book.keywords);
+  const uniqueKeywords = [...new Set(keywords)];
+  console.log(uniqueKeywords.join(';'));
+}
+getKeywordsAsString(books);
+
+console.log('======================');
+
+const bookChapters = [
+  ['The Basics', 14],
+  ['Sorting', 254],
+  ['Searching', 372],
+  ['Graphs', 526],
+  ['Strings', 706],
+];
+
+function logBookChapters(chapters) {
+  for (const [title, pages] of chapters) {
+    console.log(title.padEnd(20, '_'), pages);
+  }
+}
+logBookChapters(bookChapters);

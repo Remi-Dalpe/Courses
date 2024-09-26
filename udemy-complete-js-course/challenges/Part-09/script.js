@@ -70,23 +70,23 @@ const game = {
 //   console.log(toCamelCase(data).padEnd(20), '✅'.repeat(i + 1));
 // }
 // 2)
-console.log('==== final result ====');
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 document.querySelector('button').textContent = 'Convert to CamelCase';
 
-document.querySelector(`button`).addEventListener('click', function () {
-  const text = document.querySelector(`textarea`).value;
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
   const rows = text.split('\n');
 
-  for (const row of rows) {
+  for (const [i, row] of rows.entries()) {
     const [first, second] = row.toLowerCase().trim().split('_');
 
     const output = `${first}${second.replace(
+      //???
       second[0],
       second[0].toUpperCase()
     )}`;
-    console.log(output.padEnd(20, ' '));
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
   }
 });
 
