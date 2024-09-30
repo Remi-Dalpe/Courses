@@ -1,6 +1,6 @@
 {
   "singleQuote": true,
-  "arrowParens": "always",
+  "arrowParens": "avoid",
   "bracketSpacing": false,
   "bracketSameLine": false,
   "jsxBracketSameLine": false,

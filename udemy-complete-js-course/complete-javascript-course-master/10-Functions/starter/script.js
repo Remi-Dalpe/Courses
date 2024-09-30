@@ -1,6 +1,149 @@
 'use strict';
 
-// Functions Accepting Callback Functions
+// The call, apply & bind method
+
+const airCanada = {
+  airline: 'Air Canada',
+  iataCode: 'AC',
+  bookings: [],
+  // book: function () {}
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({flight: `${this.iataCode}${flightNum}`, name});
+  },
+};
+airCanada.book(239, 'Remi Dalpe');
+airCanada.book(635, 'John Smith');
+// console.log(airCanada.bookings);
+
+const qcWings = {
+  airline: 'Quebecwings',
+  iataCode: 'QC',
+  bookings: [],
+};
+
+const book = airCanada.book;
+
+// Don't work:
+// book(23, 'Sara Williams');
+
+// Call method
+book.call(qcWings, 23, 'Sarah Williams');
+// console.log(qcWings.bookings);
+
+book.call(airCanada, 239, 'Mary Cooper');
+// console.log(airCanada.bookings);
+
+const nbAirAhh = {
+  airline: 'New-Brunswick Air Ahh',
+  iataCode: 'NB',
+  bookings: [],
+};
+
+book.call(nbAirAhh, 583, 'Mary Cooper');
+// console.log(nbAirAhh.bookings);
+
+// Apply method
+const flightData = [583, 'George Cooper'];
+// Less used
+book.apply(nbAirAhh, flightData);
+// console.log(nbAirAhh.bookings);
+// more used
+book.call(nbAirAhh, ...flightData);
+
+// Bind method
+console.log(`==== Bind Method ====`);
+const bookQC = book.bind(qcWings);
+const bookAC = book.bind(airCanada);
+const bookNB = book.bind(nbAirAhh);
+bookQC(23, 'Steven Williams');
+bookAC(239, 'Mary Cooper');
+bookNB(583, 'George Cooper');
+console.log(airCanada.bookings, qcWings.bookings, nbAirAhh.bookings);
+
+const bookAC23 = book.bind(airCanada, 23);
+bookAC23('Remi Dalpe');
+bookAC23('Martha Cooper');
+// W/ event listener
+airCanada.planes = 300;
+airCanada.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+// airCanada.buyPlane() // this = airCanada
+document
+  .querySelector(`.buy`)
+  .addEventListener('click', airCanada.buyPlane.bind(airCanada)); // this = .buy/button element
+
+// Partial Application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addGST = addTax.bind(null, 0.05);
+// addGST = value => value + value * 0.23;
+const addQST = addTax.bind(null, 0.09975);
+// addQST = value => value + value * 0.9975;
+console.log(addGST(100));
+console.log(addQST(100));
+console.log(addGST(14.975));
+console.log(addQST(14.975));
+
+console.log(`==== Challenge ====`);
+
+const addTaxRate = function (gst, qst) {
+  return function (value) {
+    return value + value * (gst + qst); // RETURN needed or 'undefined'
+  };
+};
+const addTaxes = addTaxRate(0.05, 0.09975);
+console.log(addTaxes(100));
+
+// Functions Accepting Callback Functions & Functions Returning Functions
+/*
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+// Higher-order function
+// Delegates the actual string transformation to the lower/child function
+// Only applies to string
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`);
+};
+transformer('JavaScript is the best!', upperFirstWord);
+transformer('JavaScript is the best!', oneWord);
+// JS always uses callbacks
+const high5 = function () {
+  console.log('👋');
+};
+document.body.addEventListener('click', high5);
+
+['Jonas', 'Martha', 'Adam'].forEach(high5);
+// Functions Returning Functions
+console.log('==== Functions Returning Functions ====');
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+const greeterHey = greet('Hey');
+greeterHey('Remi');
+greeterHey('Steven');
+greet('Hello', 'Remi');
+// Same but w/ arrow function
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+greetArr('Hey')('Remi');
+*/
 
 // How Passing Arguments Works: Value vs. Reference
 /*
