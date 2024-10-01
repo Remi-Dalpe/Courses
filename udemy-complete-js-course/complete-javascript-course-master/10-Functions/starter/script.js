@@ -1,7 +1,80 @@
 'use strict';
 
-// The call, apply & bind method
+// Closures // IMPORTANT
 
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+console.dir(booker);
+// Example 1
+console.log('====Example 1====');
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+console.dir(f);
+// Re-assigned f function
+h();
+f();
+console.dir(f);
+
+// Example 2
+console.log('====Example 2====');
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+const perGroup = 1000;
+boardPassengers(180, 3);
+
+// Immediately Invoked Function Expressions (IIFE) // Can Only be called once
+/*
+const runOnce = function () {
+  console.log(`This will run again`);
+};
+runOnce();
+runOnce();
+
+(function () {
+  console.log('This will never run again');
+})();
+(() => console.log('This will never run again'))();
+*/
+
+// The call, apply & bind method
+/*
 const airCanada = {
   airline: 'Air Canada',
   iataCode: 'AC',
@@ -100,6 +173,7 @@ const addTaxRate = function (gst, qst) {
 };
 const addTaxes = addTaxRate(0.05, 0.09975);
 console.log(addTaxes(100));
+*/
 
 // Functions Accepting Callback Functions & Functions Returning Functions
 /*
