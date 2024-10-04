@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
@@ -223,6 +223,7 @@ nav {
 
 .operation--close {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  font-weight: bold;
 }
 
 h2 {

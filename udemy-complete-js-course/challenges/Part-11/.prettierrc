@@ -4,5 +4,6 @@
   "bracketSpacing": false,
   "bracketSameLine": false,
   "jsxBracketSameLine": false,
-  "semi": true
+  "semi": true,
+  "printWidth": 130
 }

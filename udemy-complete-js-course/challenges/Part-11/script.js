@@ -1,109 +1,112 @@
 'use strict';
 
-console.log(`==== Challenge #2 ====`);
+// Coding Challenge #3
+/*
+ */
+const Data1t3 = [5, 2, 4, 1, 15, 8, 3];
+const Data2t3 = [16, 6, 10, 5, 6, 1, 4];
 
-const body = document.querySelector(`body`);
+const calcAverageHumanAget3 = ages => {
+  console.log(
+    ages
+      .map(age => (age > 2 ? 16 + age * 4 : 2 * age))
+      .filter(age => age >= 18)
+      .reduce((acc, age, _, arr) => acc + age / arr.length, 0)
+  );
+};
 
-(function () {
-  const header = document.querySelector('h1');
-  header.style.color = 'red';
-  console.dir(header.style);
-  console.log(header.style.color);
-  body.addEventListener('click', function () {
-    header.style.color = 'blue';
-  });
-})();
+console.log('Data1t3');
+calcAverageHumanAget3(Data1t3);
+console.log('Data2t3');
+calcAverageHumanAget3(Data2t3);
 
-// Coding Challenge #2
-
-// This is more of a thinking challenge than a coding challenge 🤓
-// Your tasks:
-// 1. Take the IIFE below and at the end of the function, attach an event listener that DONE
-// changes the color of the selected h1 element ('header') to blue, each time
-// the body element is clicked. Do not select the h1 element again!
-// 2. And now explain to yourself (or someone around you) why this worked! Take all DONE
-// the time you need. Think about when exactly the callback function is executed,
-// and what that means for the variables involved in this example.
+// Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time
+// as an arrow function, and using chaining!
+// Test data:
+// § Data 1: [5, 2, 4, 1, 15, 8, 3]
+// § Data 2: [16, 6, 10, 5, 6, 1, 4]
 
 // GOOD LUCK 😀
 
-console.log(`==== Challenge #1 ====`);
-const poll = {
-  question: 'What is your favourite programming language?',
-  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
-  // This generates [0, 0, 0, 0]. More in the next section!
-  answers: new Array(4).fill(0),
+// Coding Challenge #2
+/*
+const Data1 = [5, 2, 4, 1, 15, 8, 3];
+const Data2 = [16, 6, 10, 5, 6, 1, 4];
 
-  registerNewAnswer() {
-    const answer = Number(
-      prompt(
-        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
-      )
-    );
-
-    typeof answer === 'number' &&
-      answer < this.answers.length &&
-      this.answers[answer]++;
-
-    this.displayResults();
-    this.displayResults('string');
-  },
-
-  displayResults(type = 'array') {
-    if (type === 'array') {
-      console.log(this.answers);
-    } else if (type === 'string')
-      console.log(`Poll results are ${this.answers.join(', ')}`);
-  },
+const calcAverageHumanAge = function (ages) {
+  const humanAge = ages.map(age => (age > 2 ? 16 + age * 4 : 2 * age));
+  const adults = humanAge.filter(age => age >= 18);
+  const avg = adults.reduce((acc, age, _, arr) => acc + age / arr.length, 0);
+  console.log(`There is ${adults.length} adult dogs, ages: ${adults.join(', ')}, for an average of ${avg} years old`);
 };
+console.log('Data1');
+calcAverageHumanAge(Data1);
+console.log('Data2');
+calcAverageHumanAge(Data2);
+ */
 
-document
-  .querySelector(`.poll`)
-  .addEventListener('click', poll.registerNewAnswer.bind(poll));
-
-// Bonus
-poll.displayResults.call({answers: [5, 2, 3]}, 'string');
-poll.displayResults.call({answers: [5, 2, 3]});
-poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]}, 'string');
-poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]});
-
-// Challenge #1
-
-// Let's build a simple poll app!
-// A poll has a question, an array of options from which people can choose, and an
-// array with the number of replies for each option. This data is stored in the starter
-// 'poll' object below.
+// Let's go back to Julia and Kate's study about dogs. This time, they want to convert
+// dog ages to human ages and calculate the average age of the dogs in their study.
 // Your tasks:
-// 1. Create a method called 'registerNewAnswer' on the 'poll' object. The
-//   method does 2 things:
-//   1.1. Display a prompt window for the user to input the number of the DONE
-//   selected option. The prompt should look like this:
-//   What is your favourite programming language?
-//   0: JavaScript
-//   1: Python
-//   2: Rust
-//   3: C++
-//   (Write option number)
-//   1.2. Based on the input number, update the 'answers' array property. For DONE
-//   example, if the option is 3, increase the value at position 3 of the array by
-//   1. Make sure to check if the input is a number and if the number makes
-//   sense (e.g. answer 52 wouldn't make sense, right?)
-// 2. Call this method whenever the user clicks the "Answer poll" button. DONE
-// 3. Create a method 'displayResults' which displays the poll results. The DONE
-// method takes a string as an input (called 'type'), which can be either 'string'
-// or 'array'. If type is 'array', simply display the results array as it is, using
-// console.log(). This should be the default option. If type is 'string', display a
-// string like "Poll results are 13, 2, 4, 1".
-// 4. Run the 'displayResults' method at the end of each DONE
-// 'registerNewAnswer' method call.
-// 5. Bonus: Use the 'displayResults' method to display the 2 arrays in the test DONE
-// data. Use both the 'array' and the 'string' option. Do not put the arrays in the poll
-// object! So what should the this keyword look like in this situation?
+// Create a function 'calcAverageHumanAge', which accepts an arrays of dog's DONE
+// ages ('ages'), and does the following things in order:
+// 1. Calculate the dog age in human years using the following formula: if the dog is DONE
+// <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old,
+// humanAge = 16 + dogAge * 4
+// 2. Exclude all dogs that are less than 18 human years old (which is the same as DONE
+// keeping dogs that are at least 18 years old)
+// 3. Calculate the average human age of all adult dogs (you should already know DONE
+// from other challenges how we calculate averages 😉)
+// 4. Run the function for both test datasets DONE
+// Test data:
+// § Data 1: [5, 2, 4, 1, 15, 8, 3]
+// § Data 2: [16, 6, 10, 5, 6, 1, 4]
 
-// The Complete JavaScript Course 21
-// Test data for bonus:
-// § Data 1: [5, 2, 3]
-// § Data 2: [1, 5, 3, 9, 6, 1]
-// Hints: Use many of the tools you learned about in this and the last section 😉
+// GOOD LUCK 😀
+
+// Coding Challenge #1
+/*
+const julia1 = [3, 5, 2, 12, 7];
+const kate1 = [4, 1, 15, 8, 3];
+const julia2 = [9, 16, 6, 8, 3];
+const kate2 = [10, 5, 6, 1, 4];
+
+const checkDogs = function (julia, kate) {
+  const juliaCorrect = julia.slice(1, -2);
+  const dogs = juliaCorrect.concat(kate);
+
+  let adult = true;
+  dogs.forEach(function (dog, i) {
+    dog >= 3 ? (adult = true) : (adult = false);
+    const isAdult = adult ? `an adult, and is ${dog} years old` : `still a puppy 🐶`;
+    console.log(`Dog number ${i + 1} is ${isAdult}`);
+  });
+};
+console.log(`==== TEST DATA #1 ====`);
+checkDogs(julia1, kate1);
+console.log(`==== TEST DATA #2 ====`);
+checkDogs(julia2, kate2);
+*/
+// Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners
+// about their dog's age, and stored the data into an array (one array for each). For
+// now, they are just interested in knowing whether a dog is an adult or a puppy.
+// A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years
+// old.
+// Your tasks:
+// Create a function 'checkDogs', which accepts 2 arrays of dog's ages DONE
+// ('dogsJulia' and 'dogsKate'), and does the following things:
+// 1. Julia found out that the owners of the first and the last two dogs actually have DONE
+// cats, not dogs! So create a shallow copy of Julia's array, and remove the cat
+// ages from that copied array (because it's a bad practice to mutate function
+// parameters)
+// 2. Create an array with both Julia's (corrected) and Kate's data DONE
+// 3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 DONE
+// is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy
+// 🐶")
+// 4. Run the function for both test datasets DONE
+// Test data:
+// § Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
+// § Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
+// Hints: Use tools from all lectures in this section so far 😉
 
 // GOOD LUCK 😀
