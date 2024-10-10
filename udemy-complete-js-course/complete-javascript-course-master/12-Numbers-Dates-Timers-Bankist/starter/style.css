@@ -223,6 +223,7 @@ nav {
 
 .operation--close {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  font-weight: bold;
 }
 
 h2 {
